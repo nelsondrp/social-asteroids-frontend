@@ -1,0 +1,16 @@
+{
+  "name": "webserver",
+  "version": "1.0.0",
+  "description": "Simple webserver in NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "websever",
+    "nodejs",
+    "http"
+  ],
+  "author": "Nelson da Rosa",
+  "license": "ISC"
+}

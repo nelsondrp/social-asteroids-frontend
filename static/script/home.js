@@ -1,5 +1,4 @@
 axios.defaults.withCredentials = true;
-axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 document.getElementById('logout-button').addEventListener("click", logout);
 
@@ -7,7 +6,9 @@ var id = document.getElementById('id');
 var username = document.getElementById('username');
 var email = document.getElementById('email');
 
-axios.get('http://localhost:8080/api/user/get/1')
+entryLinks = JSON.parse(sessionStorage.getItem("entryLinks"))._links;
+
+axios.get(entryLinks.activeUser.href)
         .then(function(response){
             console.log(response.data);
             drawData(response.data);
@@ -23,7 +24,7 @@ function drawData(user){
 }
 
 function logout(){
-    axios.get('http://localhost:8080/api/auth/logout')
+    axios.get(entryLinks.logout.href)
         .then(function(response){
             location.href = '../index.html';
         })

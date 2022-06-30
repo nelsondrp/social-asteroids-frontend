@@ -1,5 +1,4 @@
 axios.defaults.withCredentials = true;
-axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 let user = {
     username : "",
@@ -16,13 +15,20 @@ function getFormData(){
 }
 
 function signup(){
+    entryLinks = JSON.parse(sessionStorage.getItem("entryLinks"))._links;
+
     getFormData();
-    axios.post('http://localhost:8080/api/auth/signup', user)
+    axios.post(entryLinks.signup.href, user)
         .then(function(response){
             location.href = '../login.html';
         })
         .catch(function(error){
-            console.log(error)
-            alert("Nome de usuário ou email já existentes");
+            console.log(error.response.data)
+            alert(getErrorMessage(error.response.data));
         });
+}
+
+
+function getErrorMessage(errorObject){
+    return "password " + errorObject.password + "\r\n" +  "username " + errorObject.username + "\r\n" +  "email " + errorObject.email;
 }

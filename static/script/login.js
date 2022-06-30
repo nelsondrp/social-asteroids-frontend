@@ -1,5 +1,3 @@
-axios.defaults.withCredentials = true;
-
 let user = {
     username : "",
     password : ""
@@ -13,14 +11,18 @@ function getFormData(){
 }
 
 function login(){
-    getFormData();
-    axios.post('http://localhost:8080/api/auth/login',user)
+    getEntryLinks().then(entryLinks =>{
+        getFormData();
+        
+        axios.post(entryLinks.login.href, user)
         .then(function(response){
-            console.log(response);
             location.href = '../home.html';
         })
         .catch(function(error){
             console.log(error);
-            alert("Usuário e/ou senha incorreto(s)");
+            alert("Usuario e/ou senha incorreto(s)");
         })
+     });
+
+    
 }

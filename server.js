@@ -14,6 +14,8 @@ server.on("request",onRequest);
 
 function onRequest(request, response){
     var filename = parse(request.url).pathname;
+    console.log(filename);
+    console.log("-------")
 
     if(filename === '/'){
         filename = defaultIndex;

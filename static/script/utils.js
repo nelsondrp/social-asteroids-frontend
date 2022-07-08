@@ -2,7 +2,6 @@ axios.defaults.withCredentials = true;
 
 async function getEntryLinks(){
     var linksUnparsed = sessionStorage.getItem("entryLinks");
-    console.log(linksUnparsed);
 
     if(linksUnparsed == null)
     {
@@ -48,4 +47,14 @@ function getHrefOf(links, relation){
     })
 
     return href;
+}
+
+function handleError(status){
+    if(status == 403 || status == 401){
+        location.href = "../index.html";
+    }
+
+    if(status == 404){
+        location.href = "../index.html";
+    }
 }

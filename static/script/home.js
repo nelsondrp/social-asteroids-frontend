@@ -1,6 +1,10 @@
 axios.defaults.withCredentials = true;
 
 document.getElementById('logout-button').addEventListener("click", logout);
+document.getElementById('play').addEventListener('click', () => location.href = "../game.html")
+document.getElementById('forum').addEventListener('click', () => location.href = "../forum.html")
+document.getElementById('friends').addEventListener('click', () => location.href = "../friends.html")
+document.getElementById('scoreboard').addEventListener('click', () => location.href = "../board.html")
 
 var id = document.getElementById('id');
 var username = document.getElementById('username');
@@ -14,7 +18,7 @@ axios.get(entryLinks.activeUser.href)
             drawData(response.data);
         })
         .catch(function(error){
-            console.log(error);
+            handleError(error.status);;
         });
 
 function drawData(user){
@@ -29,7 +33,7 @@ function logout(){
             location.href = '../index.html';
         })
         .catch(function(error){
-            console.log(error);
+            handleError(error.response.status);
         });
 }
 

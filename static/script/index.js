@@ -8,6 +8,6 @@ function welcome(){
             sessionStorage.setItem("entryLinks",JSON.stringify(response.data));
         })
         .catch(function(error){
-            console.log(error.response.data);
+            handleError(error.response.status);
         });
 }
